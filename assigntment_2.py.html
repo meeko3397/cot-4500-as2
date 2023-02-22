@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>assigntment_2.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+assigntment_2.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">numpy </span><span class="s0">as </span><span class="s1">np</span>
+
+<span class="s1">print(</span><span class="s2">&quot;Question 1&quot;</span><span class="s1">)</span>
+<span class="s1">row = </span><span class="s3">3</span>
+<span class="s1">col = </span><span class="s3">3</span>
+<span class="s1">f = </span><span class="s3">3.7</span>
+<span class="s1">x_points = [</span><span class="s3">3.6</span><span class="s0">, </span><span class="s3">3.8</span><span class="s0">, </span><span class="s3">3.9</span><span class="s1">]</span>
+<span class="s1">y_points = [</span><span class="s3">1.675</span><span class="s0">, </span><span class="s3">1.436</span><span class="s0">, </span><span class="s3">1.318</span><span class="s1">]</span>
+<span class="s1">matrix = np.zeros((row</span><span class="s0">, </span><span class="s1">col))</span>
+
+<span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range(row):</span>
+    <span class="s1">matrix[i][</span><span class="s3">0</span><span class="s1">] = y_points[i]</span>
+
+<span class="s0">for </span><span class="s1">j </span><span class="s0">in </span><span class="s1">range(</span><span class="s3">1</span><span class="s0">, </span><span class="s1">row):</span>
+    <span class="s0">for </span><span class="s1">k </span><span class="s0">in </span><span class="s1">range(</span><span class="s3">1</span><span class="s0">, </span><span class="s1">j + </span><span class="s3">1</span><span class="s1">):</span>
+        <span class="s1">V1 = (f - x_points[j - k]) * matrix[j][k - </span><span class="s3">1</span><span class="s1">]</span>
+        <span class="s1">V2 = (f - x_points[j]) * matrix[j - </span><span class="s3">1</span><span class="s1">][k - </span><span class="s3">1</span><span class="s1">]</span>
+
+        <span class="s1">matrix[j][k] = (V1 - V2) / (x_points[j] - x_points[j - k])</span>
+
+<span class="s1">print(matrix[row - </span><span class="s3">1</span><span class="s1">][col - </span><span class="s3">1</span><span class="s1">])</span>
+<span class="s1">print(</span><span class="s2">&quot;</span><span class="s0">\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+
+<span class="s1">print(</span><span class="s2">&quot;Question 2&quot;</span><span class="s1">)</span>
+<span class="s1">row = </span><span class="s3">4</span>
+<span class="s1">col = </span><span class="s3">4</span>
+<span class="s1">x2_points = [</span><span class="s3">7.2</span><span class="s0">, </span><span class="s3">7.4</span><span class="s0">, </span><span class="s3">7.5</span><span class="s0">, </span><span class="s3">7.6</span><span class="s1">]</span>
+<span class="s1">y2_points = [</span><span class="s3">23.5492</span><span class="s0">, </span><span class="s3">25.3913</span><span class="s0">, </span><span class="s3">26.8224</span><span class="s0">, </span><span class="s3">27.4589</span><span class="s1">]</span>
+
+<span class="s1">matrix2 = np.zeros((row</span><span class="s0">, </span><span class="s1">col))</span>
+
+<span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range(row):</span>
+    <span class="s1">matrix2[i][</span><span class="s3">0</span><span class="s1">] = y2_points[i]</span>
+
+<span class="s0">for </span><span class="s1">j </span><span class="s0">in </span><span class="s1">range(row):</span>
+    <span class="s0">for </span><span class="s1">k </span><span class="s0">in </span><span class="s1">range(</span><span class="s3">1</span><span class="s0">, </span><span class="s1">j + </span><span class="s3">1</span><span class="s1">):</span>
+        <span class="s1">matrix2[j][k] = (matrix2[j][k - </span><span class="s3">1</span><span class="s1">] - matrix2[j - </span><span class="s3">1</span><span class="s1">][k - </span><span class="s3">1</span><span class="s1">]) / (x2_points[j] - x2_points[j - k])</span>
+
+<span class="s1">matrix2a = np.zeros(row - </span><span class="s3">1</span><span class="s1">)</span>
+<span class="s0">for </span><span class="s1">j </span><span class="s0">in </span><span class="s1">range(</span><span class="s3">1</span><span class="s0">, </span><span class="s1">row):</span>
+    <span class="s1">matrix2a[j - </span><span class="s3">1</span><span class="s1">] = (matrix2[j][j])</span>
+<span class="s1">print(matrix2a)</span>
+<span class="s1">print(</span><span class="s2">&quot;</span><span class="s0">\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+
+<span class="s1">print(</span><span class="s2">&quot;Question 3&quot;</span><span class="s1">)</span>
+
+<span class="s1">f2 = </span><span class="s3">7.3</span>
+
+<span class="s0">for </span><span class="s1">j </span><span class="s0">in </span><span class="s1">range(</span><span class="s3">1</span><span class="s0">, </span><span class="s1">row):</span>
+    <span class="s0">for </span><span class="s1">k </span><span class="s0">in </span><span class="s1">range(</span><span class="s3">1</span><span class="s0">, </span><span class="s1">j + </span><span class="s3">1</span><span class="s1">):</span>
+        <span class="s1">V1 = (f2 - x2_points[j - k]) * matrix2[j][k - </span><span class="s3">1</span><span class="s1">]</span>
+        <span class="s1">V2 = (f2 - x2_points[j]) * matrix2[j - </span><span class="s3">1</span><span class="s1">][k - </span><span class="s3">1</span><span class="s1">]</span>
+
+        <span class="s1">matrix2[j][k] = (V1 - V2) / (x2_points[j] - x2_points[j - k])</span>
+
+<span class="s1">print(matrix2[row - </span><span class="s3">1</span><span class="s1">][col - </span><span class="s3">1</span><span class="s1">])</span>
+<span class="s1">print(</span><span class="s2">&quot;</span><span class="s0">\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+
+<span class="s1">print(</span><span class="s2">&quot;Question 4&quot;</span><span class="s1">)</span></pre>
+</body>
+</html>
